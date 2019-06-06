@@ -7,24 +7,25 @@ export default class Main extends Component {
       search: ""
     }
   }
-  componentDidMount =() => {
-    this.props.getRepos()
-  }
+  // onSubmit =() => {
+  //   this.props.getRepos()
+  // }
   handleTyping = (e) => {
-    this.setState({ search: e.target.value });
+    // this.setState({ search: e.target.value });
+    this.props.getRepos(e.target.value)
   }
 
   render() {
-    // console.log("API:", this.props.api.items)
+    console.log("API:", this.props.api)
     return (
       <div>
         <h1>{this.props.title}</h1>
         <input type="text"
-        onChange={(e)=> this.handleTyping(e)}/>
+        onChange={this.handleTyping}/>
         <ul>
-        {/* {this.props.api.map(item => {
-          console.log(item)
-        })} */}
+        {this.props.api.map(item => {
+          return <p>{item && item.comments_url}</p>
+        })}
         </ul>
       </div>
     )
